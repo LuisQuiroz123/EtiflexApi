@@ -1,0 +1,46 @@
+openapi: 3.0.3
+info:
+  title: Access Manager API
+  description: API de autenticación
+  version: 1.0.0
+  contact:
+    name: Print Service Team
+    email: support@printservice.com
+
+servers:
+  - url: http://localhost:5235/access-manager/api/v1
+    description: Local server
+
+paths:
+  /token:
+    post:
+      summary: Genera un token
+      tags:
+        - Token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                  token_type:
+                    type: string
+                  expires_in:
+                    type: string
+        "401":
+          description: Unauthorized
